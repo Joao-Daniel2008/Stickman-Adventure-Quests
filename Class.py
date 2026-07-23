@@ -3,12 +3,13 @@ import images
 
 class player:
 
-    def __init__(self, posX, posY, map, room):
+    def __init__(self, posX, posY, map, room, visual):
         self.posX = posX
         self.posY = posY
         self.map = map
         self.room = room
         self.speed = 200
+        self.visual = visual
 
     def walk(self, velX, velY, dt):
         self.posX += velX * dt / 1000.0 * self.speed
@@ -18,6 +19,14 @@ class player:
         if self.map == 1:
             if self.room == 1:
                 return "1_1"
+
+class map:
+    def __init__(self, nome, room, id, image, rects):
+        self.nome = nome
+        self.room = room
+        self.id = id
+        self.image = image
+        self.rects = rects
 
 
 

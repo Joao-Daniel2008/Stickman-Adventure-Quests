@@ -4,6 +4,7 @@ import os
 from pygame._sdl2.video import Window
 import Class
 import math
+import maps
 
 
 pygame.init()
@@ -19,7 +20,9 @@ window.maximize()
 posx = 0
 posy = 0
 
-player = Class.player(posx, posy, 1, 1)
+player = Class.player(posx, posy, 1, 1, images.teste)
+
+currentMap = maps.initialMap
 
 running = True
 click = False
@@ -62,8 +65,8 @@ while running:
             player.posY = ClickY - images.height
     stringAux = player.mapLoad()
     mapa = Class.mapLOAD(stringAux)
-    gameScreen.blit(mapa, (0, 0))
-    gameScreen.blit(images.teste, (int(player.posX), int(player.posY)))
+    gameScreen.blit(currentMap.image, (0, 0))
+    gameScreen.blit(player.visual, (int(player.posX), int(player.posY)))
 
     actuallySizeScreen = real_screen.get_size()
     screen2 = pygame.transform.scale(gameScreen, (actuallySizeScreen))

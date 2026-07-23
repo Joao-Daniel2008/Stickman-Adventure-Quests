@@ -26,6 +26,9 @@ wayLobbyTeste = os.path.join(assetsPaste, "images", "maps", "initial", "lobbyTes
 lobbyTeste = pygame.image.load(wayLobbyTeste)
 lobbyTeste = pygame.transform.scale(lobbyTeste, size)
 
+wayObstacle = os.path.join(assetsPaste, "images", "maps", "initial", "obstacle.png")
+Obstacle = pygame.image.load(wayObstacle)
+
 
 
 
