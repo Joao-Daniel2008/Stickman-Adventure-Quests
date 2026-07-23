@@ -83,6 +83,13 @@ def infoRectcollide(mouse, char):
     else:
         return False
 
+def quest_bar(window, char, bar, x, y, xc, yc):
+    window.blit(bar, (x, y))
+    cut = pygame.Rect(0, 0, 135, 98)
+    icon = pygame.transform.scale(char.image, (135, 300)).subsurface(cut)
+    window.blit(icon, (xc, yc))
+
+
 
 
 

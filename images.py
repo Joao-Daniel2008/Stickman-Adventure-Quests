@@ -55,6 +55,12 @@ wayInfo2 = os.path.join(assetsPaste, "images", "stickman", "info2.png")
 info2 = pygame.image.load(wayInfo2)
 info2 = pygame.transform.scale(info2, (50, 50))
 
+wayQuestBar = os.path.join(assetsPaste, "images", "stickman", "questBar.png")
+questBar = pygame.image.load(wayQuestBar)
+questBar = pygame.transform.scale(questBar, (440, 270))
+questBarX = 1024//2 - 440//2
+questBarY = 576//2 - 270//2
+
 
 
 

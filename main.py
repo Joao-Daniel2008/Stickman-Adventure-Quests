@@ -45,6 +45,14 @@ while running:
     MouseX = int(realMouseX * reasonX)
     MouseY = int(realMouseY * reasonY)
 
+    stringAux = player.mapLoad()
+    mapa = Class.mapLOAD(stringAux)
+    gameScreen.blit(currentRoom.image, (0, 0))
+    Class.draw((MouseX, MouseY), gameScreen, currentRoom)
+    gameScreen.blit(player.visual, (int(player.posX), int(player.posY)))
+    player.barPlayer(gameScreen, images.icon, images.bar, images.red, images.blue,
+                        images.redX, images.redY, images.blueX, images.blueY)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -56,6 +64,7 @@ while running:
                 for char in currentRoom.chars:
                     if Class.infoRectcollide((MouseX, MouseY), char):
                         click = True
+                        Char = char
 
                 if (not click):
                     move = True
@@ -69,10 +78,17 @@ while running:
                     velX = math.cos(angle)
                     velY = math.sin(angle)
 
+                    
+                    
+
 
     tecla = pygame.key.get_pressed()
 
-    if move:
+    if click:
+        move = False
+        Class.quest_bar(gameScreen, Char, images.questBar, images.questBarX, images.questBarY, images.questBarX + 40, images.questBarY + 70)
+
+    elif move:
         saveX = player.rect.x
         saveY = player.rect.y - images.height//2
         player.rect.x = player.posX
@@ -95,6 +111,7 @@ while running:
             player.rect.x = player.posX
             player.rect.y = player.posY + images.height//2
 
+    
 
     '''
     if tecla[pygame.K_d]:
@@ -107,13 +124,6 @@ while running:
         maps.obstacle2.y -= dt / 2
     '''
 
-    stringAux = player.mapLoad()
-    mapa = Class.mapLOAD(stringAux)
-    gameScreen.blit(currentRoom.image, (0, 0))
-    Class.draw((MouseX, MouseY), gameScreen, currentRoom)
-    gameScreen.blit(player.visual, (int(player.posX), int(player.posY)))
-    player.barPlayer(gameScreen, images.icon, images.bar, images.red, images.blue,
-                     images.redX, images.redY, images.blueX, images.blueY)
     #pygame.draw.rect(gameScreen, (255, 0, 0), maps.obstacle2, 4)
 
     actuallySizeScreen = real_screen.get_size()
