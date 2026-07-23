@@ -72,10 +72,16 @@ class room:
 def draw(mouse, window, room):
     for char in room.chars:
         window.blit(char.image, char.position)
-        if(not char.infoRect.collidepoint(mouse)):
+        if (not infoRectcollide(mouse, char)):
             window.blit(char.infoImage, char.infoPosition)
         else:
             window.blit(char.infoImage2, char.infoPosition)
+
+def infoRectcollide(mouse, char):
+    if char.infoRect.collidepoint(mouse):
+        return True
+    else:
+        return False
 
 
 

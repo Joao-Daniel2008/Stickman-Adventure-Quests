@@ -30,6 +30,7 @@ currentRoom = maps.initialMap
 
 running = True
 click = False
+move = False
 
 dt = 16
 
@@ -48,21 +49,30 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
+
             if event.button == 1:
-                click = True
-                ClickX = MouseX
-                ClickY = MouseY
-                dx = ClickX - player.posX - (images.width // 2)
-                dy = ClickY - player.posY - images.height
 
-                angle = math.atan2(dy, dx)
+                click = False
+                for char in currentRoom.chars:
+                    if Class.infoRectcollide((MouseX, MouseY), char):
+                        click = True
 
-                velX = math.cos(angle)
-                velY = math.sin(angle)
+                if (not click):
+                    move = True
+                    ClickX = MouseX
+                    ClickY = MouseY
+                    dx = ClickX - player.posX - (images.width // 2)
+                    dy = ClickY - player.posY - images.height
+
+                    angle = math.atan2(dy, dx)
+
+                    velX = math.cos(angle)
+                    velY = math.sin(angle)
+
 
     tecla = pygame.key.get_pressed()
 
-    if click:
+    if move:
         saveX = player.rect.x
         saveY = player.rect.y - images.height//2
         player.rect.x = player.posX
@@ -77,9 +87,9 @@ while running:
                 player.posX = saveX
                 player.rect.y = saveY + images.height//2
                 player.posY = saveY
-                click = False
+                move = False
         elif distance <= 5:
-            click = False
+            move = False
             player.posX = ClickX - images.width//2
             player.posY = ClickY - images.height
             player.rect.x = player.posX
